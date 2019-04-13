@@ -8,13 +8,14 @@ import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 添加更新产品分类的参数
  */
 @Data
-public class PmsProductCategoryParam {
+public class PmsProductCategoryParam implements Serializable{
     @ApiModelProperty("父分类的编号")
     private Long parentId;
     @ApiModelProperty(value = "商品分类名称",required = true)

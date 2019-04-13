@@ -64,10 +64,44 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 
     @Override
     public boolean saveBrand(@Valid PmsBrandParam pmsBrand) {
-
-
-        return false;
+        BrandMapper brandMapper = getBaseMapper();
+        Brand brand = new Brand();
+        BeanUtils.copyProperties(pmsBrand,brand);
+        int i = brandMapper.insert(brand);
+        return i>0;
     }
+
+    @Override
+    public void updateByBrandId(Long id, PmsBrandParam pmsBrandParam) {
+        BrandMapper brandMapper = getBaseMapper();
+        Brand brand = new Brand();
+        BeanUtils.copyProperties(pmsBrandParam,brand);
+        brand.setId(id);
+        int i = brandMapper.updateById(brand);
+    }
+
+    @Override
+    public boolean updateShowStatusByIds(List<Long> ids, Integer showStatus) {
+        BrandMapper brandMapper = getBaseMapper();
+        QueryWrapper<Brand> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("id",ids);
+        Brand brand = new Brand();
+        brand.setShowStatus(showStatus);
+        int i = brandMapper.update(brand, queryWrapper);
+        return i>0;
+    }
+
+    @Override
+    public boolean updateFactoryStatusByIds(List<Long> ids, Integer factoryStatus) {
+        BrandMapper baseMapper = getBaseMapper();
+        QueryWrapper<Brand> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("id",ids);
+        Brand brand = new Brand();
+        brand.setFactoryStatus(factoryStatus);
+        int i = baseMapper.update(brand, queryWrapper);
+        return i>0;
+    }
+
 
 
 }

@@ -4,6 +4,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-search/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-portal-web/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-item/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-cas/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-php-sys/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-java-sys/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-cart/pom.xml" />
+        <option value="$PROJECT_DIR$/gmall-order/pom.xml" />
       </list>
     </option>
   </component>

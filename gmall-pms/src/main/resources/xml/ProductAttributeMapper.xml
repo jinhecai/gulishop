@@ -6,5 +6,8 @@
     <sql id="Base_Column_List">
         id, product_attribute_category_id, name, select_type, input_type, input_list, sort, filter_type, search_type, related_status, hand_add_status, type
     </sql>
+    <select id="selectProductId" resultType="com.atguigu.gmall.pms.entity.ProductAttribute">
+        SELECT * FROM `pms_product_attribute` WHERE product_attribute_category_id=#{id}
+    </select>
 
 </mapper>

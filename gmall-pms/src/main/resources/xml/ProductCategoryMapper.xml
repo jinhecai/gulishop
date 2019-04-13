@@ -18,13 +18,24 @@
         <result column="description" property="description" />
     </resultMap>
 
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id, name, level, product_count, product_unit, nav_status, show_status, sort, icon, keywords, description
+    </sql>
+    <update id="updateCountById">
+        UPDATE `pms_product_category` SET product_count=product_count+1
+        WHERE id = #{id}
+    </update>
+
     <resultMap id="listWithChildrenResultMap" type="com.atguigu.gmall.pms.vo.PmsProductCategoryWithChildrenItem" extends="BaseResultMap">
+
+        <collection property="children" select="listWithChildren" column="id"></collection>
 
     </resultMap>
 
     <select id="listWithChildren" resultMap="listWithChildrenResultMap">
-
-    </select>
-
+        /*id是什么相当于查询的这个菜单的子菜单*/
+        SELECT * FROM pms_product_category WHERE parent_id = #{id}
+     </select>
 
 </mapper>

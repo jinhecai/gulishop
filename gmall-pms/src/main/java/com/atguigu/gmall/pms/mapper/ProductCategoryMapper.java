@@ -16,7 +16,8 @@ import java.util.List;
  */
 public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
 
-    //查询并返回数据
-    List<PmsProductCategoryWithChildrenItem> listWithChildren();
+    List<PmsProductCategoryWithChildrenItem> listWithChildren(Integer id);
+
+    void updateCountById(Long id);
 
 }

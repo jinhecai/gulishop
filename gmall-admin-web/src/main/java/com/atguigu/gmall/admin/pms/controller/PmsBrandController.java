@@ -7,6 +7,7 @@ import com.atguigu.gmall.pms.vo.PmsBrandParam;
 import com.atguigu.gmall.to.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.BeanUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +32,7 @@ public class PmsBrandController {
     @GetMapping(value = "/listAll")
     public Object getList() {
 
-        //TODO 获取全部品牌列表  brandService.listAll()
+        //获取全部品牌列表  brandService.listAll()
 
         List<Brand> list =  brandService.listAll();
 
@@ -42,10 +43,10 @@ public class PmsBrandController {
     @PostMapping(value = "/create")
     public Object create(@Valid @RequestBody PmsBrandParam pmsBrand, BindingResult result) {
         CommonResult commonResult = new CommonResult();
-        //TODO 添加品牌
-        boolean b =brandService.saveBrand(pmsBrand);
+        // 添加品牌
+        boolean b = brandService.saveBrand(pmsBrand);
 
-        return commonResult;
+        return commonResult.success(null);
     }
 
     @ApiOperation(value = "更新品牌")
@@ -55,9 +56,10 @@ public class PmsBrandController {
                               BindingResult result) {
         CommonResult commonResult = new CommonResult();
 
-        //TODO 更新品牌
+        //更新品牌
+        brandService.updateByBrandId(id,pmsBrandParam);
 
-        return commonResult;
+        return commonResult.success(null);
     }
 
     @ApiOperation(value = "删除品牌")
@@ -65,9 +67,10 @@ public class PmsBrandController {
     public Object delete(@PathVariable("id") Long id) {
         CommonResult commonResult = new CommonResult();
 
-        //TODO 删除品牌
+        // 删除品牌
+        boolean b = brandService.removeById(id);
 
-        return commonResult;
+        return commonResult.success(null);
     }
 
     @ApiOperation(value = "根据品牌名称分页获取品牌列表")
@@ -87,7 +90,7 @@ public class PmsBrandController {
     @GetMapping(value = "/{id}")
     public Object getItem(@PathVariable("id") Long id) {
         CommonResult commonResult = new CommonResult();
-        //TODO 根据编号查询品牌信息
+        // 根据编号查询品牌信息
 
         Brand byId = brandService.getById(id);
         return commonResult.success(byId);
@@ -97,10 +100,10 @@ public class PmsBrandController {
     @PostMapping(value = "/delete/batch")
     public Object deleteBatch(@RequestParam("ids") List<Long> ids) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量删除品牌
+        // 批量删除品牌
+        boolean b = brandService.removeByIds(ids);
 
-
-        return commonResult;
+        return commonResult.success(null);
     }
 
     @ApiOperation(value = "批量更新显示状态")
@@ -108,8 +111,8 @@ public class PmsBrandController {
     public Object updateShowStatus(@RequestParam("ids") List<Long> ids,
                                    @RequestParam("showStatus") Integer showStatus) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量更新显示状态
-
+        //批量更新显示状态
+       boolean b = brandService.updateShowStatusByIds(ids,showStatus);
 
         return commonResult;
     }
@@ -119,8 +122,8 @@ public class PmsBrandController {
     public Object updateFactoryStatus(@RequestParam("ids") List<Long> ids,
                                       @RequestParam("factoryStatus") Integer factoryStatus) {
         CommonResult commonResult = new CommonResult();
-        //TODO 批量更新厂家制造商状态
-
+        //批量更新厂家制造商状态
+        boolean b =brandService.updateFactoryStatusByIds(ids,factoryStatus);
 
         return commonResult;
     }

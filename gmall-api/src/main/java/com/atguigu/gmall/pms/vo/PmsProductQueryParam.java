@@ -3,11 +3,13 @@ package com.atguigu.gmall.pms.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * 产品查询参数
  */
 @Data
-public class PmsProductQueryParam {
+public class PmsProductQueryParam implements Serializable{
     @ApiModelProperty("上架状态")
     private Integer publishStatus;
     @ApiModelProperty("审核状态")

@@ -7,12 +7,13 @@ import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 /**
  * 品牌传递参数
  */
 @Data
-public class PmsBrandParam {
+public class PmsBrandParam implements Serializable{
     @ApiModelProperty(value = "品牌名称",required = true)
     @NotEmpty(message = "名称不能为空")
     private String name;

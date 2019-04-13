@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 
 /**
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
  * Created by atguigu 4/26.
  */
 @Data
-public class PmsProductAttributeParam {
+public class PmsProductAttributeParam implements Serializable{
     @ApiModelProperty("属性分类ID")
     @NotEmpty(message = "属性分类不能为空")
     private Long productAttributeCategoryId;
@@ -46,6 +47,5 @@ public class PmsProductAttributeParam {
     @FlagValidator({"0","1"})
     private Integer type;
 
-    private String email;
 
 }

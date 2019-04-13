@@ -24,4 +24,10 @@ public interface BrandService extends IService<Brand> {
 
 
     boolean saveBrand(@Valid PmsBrandParam pmsBrand);
+
+    void updateByBrandId(Long id, PmsBrandParam pmsBrandParam);
+
+    boolean updateShowStatusByIds(List<Long> ids, Integer showStatus);
+
+    boolean updateFactoryStatusByIds(List<Long> ids, Integer factoryStatus);
 }

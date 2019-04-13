@@ -29,7 +29,10 @@ public class PmsSkuStockController {
     public Object getList(@PathVariable Long pid, @RequestParam(value = "keyword",required = false) String keyword) {
 
         //TODO 根据商品编号及编号模糊搜索sku库存
-        return new CommonResult().success(null);
+        List<SkuStock> skuStocks =skuStockService.getSkuStock(pid,keyword);
+
+
+        return new CommonResult().success(skuStocks);
     }
     @ApiOperation("批量更新库存信息")
     @RequestMapping(value ="/update/{pid}",method = RequestMethod.POST)
@@ -37,6 +40,8 @@ public class PmsSkuStockController {
     public Object update(@PathVariable Long pid,@RequestBody List<SkuStock> skuStockList){
 
         //TODO 批量更新库存信息
-        return new CommonResult().success(null);
+        boolean skuStocks =skuStockService.updateSkuStock(pid,skuStockList);
+
+        return new CommonResult().success(skuStocks);
     }
 }
