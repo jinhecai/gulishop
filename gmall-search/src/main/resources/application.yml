@@ -1,0 +1,5 @@
+spring:
+  elasticsearch:
+    jest:
+      uris:
+        - http://192.168.81.100:9200
